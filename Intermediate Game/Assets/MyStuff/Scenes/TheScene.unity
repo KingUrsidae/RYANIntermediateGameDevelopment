@@ -123,34 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &203832734 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100006, guid: db49dca57a9f6fd439f3b7cb8aa23a5a, type: 3}
-  m_PrefabInstance: {fileID: 1925468517}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &203832735 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: db49dca57a9f6fd439f3b7cb8aa23a5a, type: 3}
   m_PrefabInstance: {fileID: 1925468517}
   m_PrefabAsset: {fileID: 0}
---- !u!143 &203832736
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203832734}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1.8
-  m_Radius: 0.3
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &331016608
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,6 +348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1004896702}
   - component: {fileID: 1004896703}
+  - component: {fileID: 1004896704}
   m_Layer: 0
   m_Name: ThePlayer
   m_TagString: Untagged
@@ -411,6 +389,24 @@ MonoBehaviour:
   moveSpeed: 4
   jumpSpeed: 10
   gravityMultiplier: 3
+--- !u!143 &1004896704
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004896701}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1.8
+  m_Radius: 0.3
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1198136831
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,7 +771,7 @@ Transform:
   m_GameObject: {fileID: 1535292889}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1198136832}
@@ -854,6 +850,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1903414954}
+  - component: {fileID: 1903414955}
   m_Layer: 0
   m_Name: CamreaRig
   m_TagString: Untagged
@@ -877,6 +874,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1903414955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903414953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ab7c94230a24d14d83057cedcd09f1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockCursor: 1
+  target: {fileID: 1004896702}
+  moveSpeed: 5
+  turnSpeed: 5
+  tiltMax: 80
+  tiltMin: 90
 --- !u!1001 &1925468517
 PrefabInstance:
   m_ObjectHideFlags: 0
