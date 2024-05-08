@@ -61,7 +61,6 @@ public class ThirdPersonMove : MonoBehaviour
     {
         Vector3 direction = transform.forward * move.z * moveSpeed;
         
-
         if (cc.isGrounded)
         {
             verticalVelocity = 0;
