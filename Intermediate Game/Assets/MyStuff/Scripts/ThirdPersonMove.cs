@@ -16,7 +16,7 @@ public class ThirdPersonMove : MonoBehaviour
     CharacterController cc;
     public float moveSpeed = 4;
     //jumping and gravity 
-    public float jumpSpeed = 10.0f;
+    public float jumpSpeed = 20.0f;
     public float gravityMultiplier = 3;
     float verticalVelocity = 0;
 

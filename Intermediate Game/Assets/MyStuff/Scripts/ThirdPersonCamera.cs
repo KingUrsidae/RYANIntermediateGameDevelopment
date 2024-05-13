@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
@@ -19,20 +20,26 @@ public class ThirdPersonCamera : MonoBehaviour
     private float tiltAngle;
     private float lookAngle;
     private Vector3 pivotEulers;
+    // Gun stuff
+    public Transform J_Gun;
+    private LayerMask J_LayerMask;
 
     // Start is called before the first frame update
     void Start()
     {
+
         if (lockCursor == true)
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
         pivot = GetComponentInChildren<Camera>().transform.parent;
         pivotEulers = pivot.rotation.eulerAngles;
+        J_LayerMask = LayerMask.GetMask("Cursor");
     }    
     // Update is called once per frame
     private void Update()
     {
+        Aim();
         HandleRotation();
     }
     void HandleRotation()
@@ -45,6 +52,17 @@ public class ThirdPersonCamera : MonoBehaviour
         tiltAngle -= y * turnSpeed;
         tiltAngle = Mathf.Clamp(tiltAngle, -tiltMin, tiltMax);
         pivot.localRotation = Quaternion.Euler(tiltAngle, pivotEulers.y, pivotEulers.z);
+    }
+    void Aim()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, J_LayerMask))
+        {
+            J_Gun.LookAt(hit.point);
+        }
     }
     void LateUpdate()
     {
