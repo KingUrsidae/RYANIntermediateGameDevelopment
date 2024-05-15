@@ -26,4 +26,4 @@ public class TimeController : MonoBehaviour
         Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
     }
 }
-// reffrence to youtube video by "Brackys" avalible at: https://youtu.be/0VGosgaoTsw?si=XBetxNsz6R1WbAqr
+// reffrence to youtube video by "Brackeys" avalible at: https://youtu.be/0VGosgaoTsw?si=XBetxNsz6R1WbAqr
