@@ -15,15 +15,18 @@ public class ThirdPersonMove : MonoBehaviour
     // Movement
     CharacterController cc;
     public float moveSpeed = 4;
+    bool isBulletTimeReady;
     //jumping and gravity 
     public float jumpSpeed = 20.0f;
     public float gravityMultiplier = 3;
     float verticalVelocity = 0;
 
+    public TimeController timeController;
 
     // Start is called before the first frame update
     void Start()
     {
+
         cc = GetComponent<CharacterController>();
         if (cam == null)
         {
@@ -74,5 +77,11 @@ public class ThirdPersonMove : MonoBehaviour
         direction.y = verticalVelocity;
 
         cc.Move(direction * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.F) /*&& isBulletTimeReady is true*/)
+        {
+            timeController.DoSlowdown();
+        }
+        
     }
 }

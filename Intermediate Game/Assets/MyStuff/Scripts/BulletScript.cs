@@ -5,9 +5,9 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     public float J_MaxLifeTime = 20f;
-    public float J_MaxDamage = 100;
+    public float J_MaxDamage = 120;
     public float J_ExplosionRadius = 15;
-    public float J_ExplosionForce = 200f;
+    public float J_ExplosionForce = 300f;
 
     public ParticleSystem m_ExplosionParticles;
     private void Start()

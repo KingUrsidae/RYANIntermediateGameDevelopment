@@ -7,7 +7,7 @@ public class Shooting : MonoBehaviour
 {
     
     public Transform m_FireTransform;
-    public float J_BasicLaunchForce = 50f;
+    public float J_BasicLaunchForce = 500f;
     public int J_Ammo = 0;
     public Rigidbody J_Bullet; public Rigidbody J_Bullet2;
     public TextMeshProUGUI J_AmmoCounterText;

@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public float J_StartingHealth = 1000f;
-    /*
-    public float J_HPFreashHold = 75f;
-    public float J_HPFreashHold2 = 50f;
-    public float J_HPFreashHold3 = 25f;
-    public GameObject J_HealthState;
-    public GameObject J_HealthState2;
-    public GameObject J_HealthState3;
-    */
+    public float J_StartingHealth = 2f;
+    
+    public GameObject J_HealthStateLow;
+        
     public float J_CurrentHealth;
     private bool J_Dead;
 
@@ -25,11 +20,9 @@ public class PlayerHealth : MonoBehaviour
     {
         J_CurrentHealth = J_StartingHealth;
         J_Dead = false;
-        /*
-        J_HealthState.gameObject.SetActive(false);
-        J_HealthState2.gameObject.SetActive(false);
-        J_HealthState3.gameObject.SetActive(false);
-        */
+        
+        J_HealthStateLow.gameObject.SetActive(false);
+        
     }
 
     public void TakeDamage(float amount)
@@ -39,20 +32,12 @@ public class PlayerHealth : MonoBehaviour
         {
             OnDeath();
         }
-        /*
-        if (J_CurrentHealth <= J_HPFreashHold)
+        
+        if (J_CurrentHealth <= 1f)
         {
-             J_HealthState.gameObject.SetActive(true);
+             J_HealthStateLow.gameObject.SetActive(true);
         }
-        if (J_CurrentHealth <= J_HPFreashHold2)
-        {
-             J_HealthState2.gameObject.SetActive(true);
-        }
-        if (m_CurrentHealth <= J_HPFreashHold3)
-        {
-             J_HealthState3.gameObject.SetActive(true);
-        }
-        */
+                
     }
     private void OnDeath()
     {
@@ -68,21 +53,11 @@ public class PlayerHealth : MonoBehaviour
         {
             J_CurrentHealth = J_StartingHealth;
         }
-        /*
-        if (J_CurrentHealth >= J_HPFreashHold)
+        
+        if (J_CurrentHealth >= 1f)
         {
-             J_HealthState.gameObject.SetActive(false);
+             J_HealthStateLow.gameObject.SetActive(false);
         }
-
-        if (m_CurrentHealth2 >= J_HPFreashHold2)
-        {
-             J_HealthState.gameObject.SetActive(false);
-        }
-
-        if (m_CurrentHealth >= J_HPFreashHold3)
-        {
-             J_HealthState3.gameObject.SetActive(false);
-        }
-        */
+                
     }
 }

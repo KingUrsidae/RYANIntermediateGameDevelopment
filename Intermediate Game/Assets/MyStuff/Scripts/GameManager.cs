@@ -8,14 +8,15 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI J_AmmoCounterText;
+    public TextMeshProUGUI J_MessageText;
     // Panels
-    // public GameObject J_Panel;
+    //public GameObject J_Panel;
     // Buttons
     public Button J_QuitButton;
     
     // More things
     public GameObject[] J_Enemies;
-    private float m_gameTime = 0;
+    
     // Game state stuff
     public enum GameState
     {
@@ -23,11 +24,12 @@ public class GameManager : MonoBehaviour
         Playing,
         GameOver
     };
-    private GameState m_GameState;
-    public GameState State { get { return m_GameState; } }
+    private GameState J_GameState;
+    public GameState State { get { return J_GameState; } }
     private void Awake()
     {
-        m_GameState = GameState.Start;
+        J_GameState = GameState.Start;
+        //J_Panel.gameObject.SetActive(false);
     }
     private void Start()
     {
@@ -36,7 +38,6 @@ public class GameManager : MonoBehaviour
             J_Enemies[i].SetActive(false);
         }
                 
-        J_AmmoCounterText.gameObject.SetActive(false);
     }
     private bool OneLeft()
     {
@@ -63,14 +64,13 @@ public class GameManager : MonoBehaviour
         }
         return false;
     }
-    public float GameTime { get { return m_gameTime; } }
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             Application.Quit();
         }
-        switch (m_GameState)
+        switch (J_GameState)
         {
             case GameState.Start:
                 GameStateStart();
@@ -93,24 +93,22 @@ public class GameManager : MonoBehaviour
     private void GameStatePlaying()
     {
         bool isGameOver = false;
-
-        m_gameTime += Time.deltaTime;
-        int seconds = Mathf.RoundToInt(m_gameTime);
+        //J_Panel.gameObject.SetActive(true);
 
         if (IsPlayerDead() == true)
         {
-            //J_MessageText.text = "YOU DIED";
+            J_MessageText.text = "YOU DIED";
             isGameOver = true;
         }
         else if (OneLeft() == true)
         {
-            //J_MessageText.text = "YOU WON";
+            J_MessageText.text = "YOU WON";
             isGameOver = true;
             
         }
         if (isGameOver == true)
         {
-            m_GameState = GameState.GameOver;
+            J_GameState = GameState.GameOver;
         }
     }
     private void GameStateGameOver()
@@ -122,12 +120,11 @@ public class GameManager : MonoBehaviour
     }
     public void OnNewGame()
     {
-        //Panel.gameObject.SetActive(false);
+        //J_Panel.gameObject.SetActive(false);
         J_AmmoCounterText.gameObject.SetActive(true);
-        //m_MessageText.text = "";
+        J_MessageText.text = "";
 
-        m_gameTime = 0;
-        m_GameState = GameState.Playing;
+        J_GameState = GameState.Playing;
 
         for (int i = 0; i < J_Enemies.Length; i++)
         {
