@@ -39,7 +39,7 @@ public class ThirdPersonMove : MonoBehaviour
     {
         Inputs();
         Rotation();
-        Movement(); 
+        Movement();
     }
 
     void Inputs()
@@ -63,13 +63,13 @@ public class ThirdPersonMove : MonoBehaviour
     void Movement()
     {
         Vector3 direction = transform.forward * move.z * moveSpeed;
-        
+
         if (cc.isGrounded)
         {
             verticalVelocity = 0;
         }
         verticalVelocity += Physics.gravity.y * gravityMultiplier * Time.deltaTime;
-        
+
         if (Input.GetButtonDown("Jump") && cc.isGrounded)
         {
             verticalVelocity = jumpSpeed;
@@ -84,4 +84,5 @@ public class ThirdPersonMove : MonoBehaviour
         }
         
     }
+       
 }
