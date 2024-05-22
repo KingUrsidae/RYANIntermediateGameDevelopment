@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    
+    public float J_FireRate = 0.15f;
+    private float timeToFire = 0.3f;
     public Transform m_FireTransform;
-    public float J_BasicLaunchForce = 500f;
+    public float J_BasicLaunchForce = 200f;
     public int J_Ammo = 0;
     public Rigidbody J_Bullet; public Rigidbody J_Bullet2;
     public TextMeshProUGUI J_AmmoCounterText;
@@ -15,14 +16,22 @@ public class Shooting : MonoBehaviour
     private void Update()
     {
         int Ammo = J_Ammo; J_AmmoCounterText.text = string.Format("Ammo: {00}", Ammo);
-        if (Input.GetButtonUp("Fire1"))
+        
+        if(timeToFire > 0f)
+        {
+            timeToFire -= Time.deltaTime;
+        }
+        if (Input.GetMouseButton(0) && timeToFire <= 0)
         {
             Fire();
+            timeToFire = J_FireRate;
         }
-        if (Input.GetButtonUp("Fire2") && J_Ammo > 0)
+        if (Input.GetMouseButton(1) && timeToFire <= 0 && J_Ammo > 0)
         {
             Fire2();
+            timeToFire = J_FireRate -0.06f;
         }
+        
     }
 
     private void Fire()

@@ -7,14 +7,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Texts")]
     public TextMeshProUGUI J_AmmoCounterText;
     public TextMeshProUGUI J_MessageText;
-    // Panels
-    //public GameObject J_Panel;
-    // Buttons
-    public Button J_QuitButton;
     
-    // More things
+    [Header("Panels")]
+    //public GameObject J_Panel;
+
+    [Header("Buttons")]
+    public Button J_QuitButton;
+
+    [Header("Enemies")]
     public GameObject[] J_Enemies;
     
     // Game state stuff

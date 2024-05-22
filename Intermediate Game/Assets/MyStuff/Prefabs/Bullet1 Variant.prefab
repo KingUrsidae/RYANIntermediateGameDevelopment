@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 941b635081cd66f4b97c7aa19b6454bf, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 941b635081cd66f4b97c7aa19b6454bf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -116,8 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd764f640cbe8e4b88ac3a8eba71ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  J_MaxLifeTime: 20
-  J_MaxDamage: 100
+  J_MaxLifeTime: 30
+  J_MaxDamage: 1
   J_ExplosionRadius: 15
   J_ExplosionForce: 200
   m_ExplosionParticles: {fileID: 19887218, guid: 6ec94bebfeb43a44c9a3811fdf0e916e, type: 3}

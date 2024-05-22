@@ -6,21 +6,22 @@ using UnityEngine.Animations;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
-    public bool lockCursor = true; 
-    // Follow the target
+    public bool lockCursor = true;
+
+    [Header("Follow the target")]
     public Transform target;
-    public float moveSpeed = 4f;
-    // rotate camera
-    public float turnSpeed = 4f;
-    
+    public float moveSpeed = 7f;
+
+    [Header("Rotate camrea")]
+    public float turnSpeed = 5f;
     public float tiltMax = 75f;
     public float tiltMin = 45f;
-
     private Transform pivot;
     private float tiltAngle;
     private float lookAngle;
     private Vector3 pivotEulers;
-    // Gun stuff
+
+    [Header("Gun stuff")]
     public Transform J_Gun;
     private LayerMask J_LayerMask;
 
