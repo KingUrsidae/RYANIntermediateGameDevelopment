@@ -105,7 +105,10 @@ public class ThirdPersonMove : MonoBehaviour
             Dash();
         }
         if (dashCdTimer > 0)
+        {
             dashCdTimer -= Time.deltaTime;
+        }
+            
             
     }
     void AnimationStuff()
