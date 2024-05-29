@@ -15,8 +15,6 @@ public class TimeController : MonoBehaviour
     private Vignette vignette;
     private float originalVignetteIntensity;
     private float originalChromeaticAberratonIntensity;
-    public float J_newChromeaticAberratonIntensity;
-    public float J_newVignette;
     public float J_timeScale;
     /*
     timeScale
@@ -27,26 +25,31 @@ public class TimeController : MonoBehaviour
     public void DoSlowdown()
     {
         Time.timeScale = slowdownFactor;
-        Time.fixedDeltaTime = Time.timeScale * .02f;
-        //ApplyCinematicEffects();
+        Time.fixedDeltaTime = Time.timeScale * .1f;
+        ApplyCinematicEffects();
     }
     
     void Update()
     {
+        // Bullet time code
         Time.timeScale += (1f / slowDownLength) * Time.unscaledDeltaTime;
         Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+        // Cidimatic effects
+        if (Time.timeScale <= 1f)
+        {
+            J_timeScale -= 0.00005f;
+        }
         if (Time.timeScale >= 1f)
         {
             RevertCinematicEffects();
         }
-        J_timeScale = Time.timeScale;
         if (vignette != null)
         {
             vignette.intensity.value = J_timeScale;
         }
         if (chromaticAberration != null)
         {
-            chromaticAberration.intensity.value = J_timeScale ;
+            chromaticAberration.intensity.value = J_timeScale;
         }
     }
     private void Start()
@@ -59,21 +62,12 @@ public class TimeController : MonoBehaviour
         {
             originalChromeaticAberratonIntensity = chromaticAberration.intensity.value;
         }
-
+        J_timeScale = 0f;
     }
-    /*
     private void ApplyCinematicEffects()
     {
-        if (vignette != null)
-        {
-            vignette.intensity.value = J_newVignette;
-        }
-        if (chromaticAberration != null)
-        {
-            chromaticAberration.intensity.value = J_newChromeaticAberratonIntensity;
-        }
+        J_timeScale = 0.55f;
     }
-    */
     private void RevertCinematicEffects()
     {
         if (vignette != null)
