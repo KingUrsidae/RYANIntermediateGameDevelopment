@@ -37,7 +37,7 @@ public class TimeController : MonoBehaviour
         // Cidimatic effects
         if (Time.timeScale <= 1f)
         {
-            J_timeScale -= 0.00005f;
+            J_timeScale -= 0.00004f;
         }
         if (Time.timeScale >= 1f)
         {

@@ -7,9 +7,9 @@ public class PlayerHealth : MonoBehaviour
 {
     [Header("Health")]
     public float J_StartingHealth = 2f;
-    
     public float J_CurrentHealth;
     private bool J_Dead;
+
     [Header("Effects")]
     public PostProcessVolume postProcessVolume;
     public float J_newTempreture;

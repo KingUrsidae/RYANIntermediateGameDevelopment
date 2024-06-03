@@ -21,9 +21,6 @@ public class ThirdPersonCamera : MonoBehaviour
     private float lookAngle;
     private Vector3 pivotEulers;
 
-    [Header("The Gun")]
-    public Transform J_Gun;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +35,7 @@ public class ThirdPersonCamera : MonoBehaviour
     private void Update()
     {
         HandleRotation();
-        J_Gun.LookAt(Camera.main.transform);
+        
     }
     void HandleRotation()
     {

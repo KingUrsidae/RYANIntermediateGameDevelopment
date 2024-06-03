@@ -6,8 +6,8 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     [Header("Firerate")]
-    public float J_FireRate = 2f;
-    private float timeToFire = 1f;
+    public float J_FireRate = 0.5f;
+    private float timeToFire = 0.01f;
 
     [Header("Shooting stuff")]
     public Transform m_FireTransform;

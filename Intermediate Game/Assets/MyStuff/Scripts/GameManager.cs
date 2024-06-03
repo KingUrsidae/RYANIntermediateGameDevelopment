@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < J_Enemies.Length; i++)
         {
-            J_Enemies[i].SetActive(false);
+            J_Enemies[i].SetActive(true);
         }
                 
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.Rendering.PostProcessing;
 
 public class ThirdPersonMove : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class ThirdPersonMove : MonoBehaviour
     CharacterController cc;
     public float moveSpeed = 4;
     public KeyCode JumpKey = KeyCode.Space;
+    private bool isJumping;
 
     [Header("Jumping & Gravity")]
     public float jumpSpeed = 20.0f;
@@ -41,12 +43,12 @@ public class ThirdPersonMove : MonoBehaviour
     public float dashCdTimer;
     public KeyCode dashKey = KeyCode.F;
 
-
     // Start is called before the first frame update
     void Start()
     {
         J_Animator = gameObject.GetComponent<Animator>();
         cc = GetComponent<CharacterController>();
+        isJumping = false;
         canDash = true;
         if (cam == null)
         {
@@ -83,12 +85,14 @@ public class ThirdPersonMove : MonoBehaviour
         Vector3 direction = transform.forward * move.z * moveSpeed;
         if (cc.isGrounded)
         {
-            verticalVelocity = 0;
+            verticalVelocity = 0; 
+            isJumping = false;
         }
         verticalVelocity += Physics.gravity.y * gravityMultiplier * Time.deltaTime;
         if (Input.GetKeyDown(JumpKey) && cc.isGrounded)
         {
             verticalVelocity = jumpSpeed;
+            isJumping = true;
         }
         direction.y = verticalVelocity;
         cc.Move(direction * Time.deltaTime);
@@ -97,6 +101,7 @@ public class ThirdPersonMove : MonoBehaviour
     {
         J_Animator.SetFloat("Horizontal", sideDirection);
         J_Animator.SetFloat("Vertical", forwardDirection);
+        J_Animator.SetBool("IsJumping", isJumping);
     }
     void CheckDash()
     {
@@ -132,6 +137,7 @@ public class ThirdPersonMove : MonoBehaviour
     {
         canDash = false; 
     }
+   
     /*Reffrences
     
     */
