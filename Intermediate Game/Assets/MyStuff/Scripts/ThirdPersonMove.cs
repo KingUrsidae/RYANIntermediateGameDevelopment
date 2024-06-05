@@ -35,10 +35,8 @@ public class ThirdPersonMove : MonoBehaviour
 
     [Header("Dash")]
     public Transform orientation;
-    public float dashForce;
     public float dashDuration;
     public float dashCd;
-    public float dashSpeed;
     public bool canDash;
     public float dashCdTimer;
     public KeyCode dashKey = KeyCode.F;
@@ -86,7 +84,6 @@ public class ThirdPersonMove : MonoBehaviour
         if (cc.isGrounded)
         {
             isJumping = false; verticalVelocity = 0; 
-            
         }
         verticalVelocity += Physics.gravity.y * gravityMultiplier * Time.deltaTime;
         if (Input.GetKeyDown(JumpKey) && cc.isGrounded)
@@ -94,7 +91,7 @@ public class ThirdPersonMove : MonoBehaviour
             isJumping = true; verticalVelocity = jumpSpeed;  
         }
         direction.y = verticalVelocity;
-        cc.Move(direction * Time.deltaTime);
+        cc.Move(direction * Time.unscaledDeltaTime);
     }
     void AnimationStuff()
     {
@@ -108,7 +105,6 @@ public class ThirdPersonMove : MonoBehaviour
         {
             if (Input.GetKeyDown(dashKey))
             {
-                timeController.DoSlowdown();
                 DoDash();
             }
         }
@@ -128,13 +124,7 @@ public class ThirdPersonMove : MonoBehaviour
             return;
         else
             dashCdTimer = dashCd;
-        Vector3 forceToApply = orientation.forward * dashForce;
-        cc.Move(forceToApply);
-        Invoke(nameof(ResetDash), dashDuration);
-    }
-    private void ResetDash()
-    {
-        canDash = false; 
+        timeController.DoSlowdown();
     }
    
     /*Reffrences

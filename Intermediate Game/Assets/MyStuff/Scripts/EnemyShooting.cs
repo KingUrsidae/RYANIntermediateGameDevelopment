@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyShooting : MonoBehaviour
 {
+    [Header("Bullet Factors")]
     public Rigidbody J_Shell;
     public Transform J_FireTransform;
     public float J_lanchForce;

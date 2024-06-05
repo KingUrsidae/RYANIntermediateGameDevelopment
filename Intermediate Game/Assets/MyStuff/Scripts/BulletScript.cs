@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    public float J_MaxLifeTime = 20f;
+    [Header("Bullet Numbers")]
     public float J_MaxDamage = 1f;
+    public float J_MaxLifeTime = 20f;
     public float J_ExplosionRadius = 15;
     public float J_ExplosionForce = 300f;
 
