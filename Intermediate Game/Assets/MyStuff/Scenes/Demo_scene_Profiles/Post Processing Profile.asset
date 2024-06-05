@@ -44,43 +44,6 @@ MonoBehaviour:
   opacity:
     overrideState: 1
     value: 1
---- !u!114 &-7795180627081907883
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3f6f3f7c722b4544b97e3c75840aa33, type: 3}
-  m_Name: AutoExposure
-  m_EditorClassIdentifier: 
-  active: 1
-  enabled:
-    overrideState: 1
-    value: 1
-  filtering:
-    overrideState: 1
-    value: {x: 1, y: 99}
-  minLuminance:
-    overrideState: 1
-    value: 0
-  maxLuminance:
-    overrideState: 1
-    value: 9
-  keyValue:
-    overrideState: 1
-    value: 1
-  eyeAdaptation:
-    overrideState: 1
-    value: 0
-  speedUp:
-    overrideState: 1
-    value: 2
-  speedDown:
-    overrideState: 1
-    value: 1
 --- !u!114 &-5462287230899497083
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -99,16 +62,16 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 5
+    value: 7
   threshold:
     overrideState: 1
-    value: 2
+    value: 3
   softKnee:
     overrideState: 1
     value: 0.5
   clamp:
     overrideState: 1
-    value: 65472
+    value: 650
   diffusion:
     overrideState: 1
     value: 8
@@ -189,7 +152,6 @@ MonoBehaviour:
   m_Name: Post Processing Profile
   m_EditorClassIdentifier: 
   settings:
-  - {fileID: -7795180627081907883}
   - {fileID: -4683659973421035196}
   - {fileID: -8916588601920787718}
   - {fileID: 547133150011178410}
@@ -276,10 +238,10 @@ MonoBehaviour:
     value: 200
   mixerRedOutGreenIn:
     overrideState: 1
-    value: -15
+    value: -40
   mixerRedOutBlueIn:
     overrideState: 1
-    value: -15
+    value: -40
   mixerGreenOutRedIn:
     overrideState: 1
     value: 0

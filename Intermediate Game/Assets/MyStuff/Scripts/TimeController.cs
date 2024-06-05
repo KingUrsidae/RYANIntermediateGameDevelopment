@@ -37,7 +37,7 @@ public class TimeController : MonoBehaviour
         // Cidimatic effects
         if (Time.timeScale <= 1f)
         {
-            J_timeScale -= 0.00004f;
+            J_timeScale -= 0.0001f;
         }
         if (Time.timeScale >= 1f)
         {
@@ -66,7 +66,7 @@ public class TimeController : MonoBehaviour
     }
     private void ApplyCinematicEffects()
     {
-        J_timeScale = 0.55f;
+        J_timeScale = 0.65f;
     }
     private void RevertCinematicEffects()
     {

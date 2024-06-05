@@ -16,16 +16,11 @@ public class PlayerHealth : MonoBehaviour
     private float originalTempreture;
     private float originalExposure;
     private ColorGrading colorGrading;
-    private AutoExposure autoExposure;
     private void Awake()
     {
         if (postProcessVolume.profile.TryGetSettings(out colorGrading))
         {
             originalTempreture = colorGrading.temperature.value;
-        }
-        if (postProcessVolume.profile.TryGetSettings(out autoExposure))
-        {
-            //originalExposure = autoExposure..value;
         }
     }
     private void OnEnable()
@@ -35,8 +30,9 @@ public class PlayerHealth : MonoBehaviour
     }
     public void TakeDamage(float amount)
     {
-        J_CurrentHealth -= amount;ApplyLowHealth();
-        if (J_CurrentHealth <= 0f && !J_Dead)
+        J_CurrentHealth -= amount;
+        ApplyLowHealth();
+        if (J_CurrentHealth <= 0f)
         {
             OnDeath();
         }
@@ -44,15 +40,12 @@ public class PlayerHealth : MonoBehaviour
     private void OnDeath()
     {
         J_Dead = true;
-        if (autoExposure != null)
-        {
-            //autoExposure..value = 0f;
-        }
         gameObject.SetActive(false);
     }
     public void AddHealth(int newHealth)
     {
-        J_CurrentHealth += newHealth;RevertLowHealth();
+        J_CurrentHealth += newHealth;
+        RevertLowHealth();
         if (J_CurrentHealth > J_StartingHealth)
         {
             J_CurrentHealth = J_StartingHealth;
@@ -71,18 +64,5 @@ public class PlayerHealth : MonoBehaviour
         {
             colorGrading.temperature.value = originalTempreture;
         }
-    }
-    /*
-    private void Update()
-    {
-        if (J_CurrentHealth == 0 )
-        {
-            if (autoExposure != null)
-            {
-                autoExposure..value = 0f;
-            }
-        }
-        
-    }
-    */
+    }    
 }

@@ -85,14 +85,13 @@ public class ThirdPersonMove : MonoBehaviour
         Vector3 direction = transform.forward * move.z * moveSpeed;
         if (cc.isGrounded)
         {
-            verticalVelocity = 0; 
-            isJumping = false;
+            isJumping = false; verticalVelocity = 0; 
+            
         }
         verticalVelocity += Physics.gravity.y * gravityMultiplier * Time.deltaTime;
         if (Input.GetKeyDown(JumpKey) && cc.isGrounded)
         {
-            verticalVelocity = jumpSpeed;
-            isJumping = true;
+            isJumping = true; verticalVelocity = jumpSpeed;  
         }
         direction.y = verticalVelocity;
         cc.Move(direction * Time.deltaTime);
