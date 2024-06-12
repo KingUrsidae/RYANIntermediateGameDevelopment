@@ -19,10 +19,11 @@ public class ThirdPersonMove : MonoBehaviour
     [Header("Movement")]
     CharacterController cc;
     public float moveSpeed = 4;
-    public KeyCode JumpKey = KeyCode.Space;
-    private bool isJumping;
+    
 
     [Header("Jumping & Gravity")]
+    public KeyCode JumpKey = KeyCode.Space;
+    private bool isJumping;
     public float jumpSpeed = 20.0f;
     public float gravityMultiplier = 3;
     float verticalVelocity = 0;
@@ -42,7 +43,7 @@ public class ThirdPersonMove : MonoBehaviour
     public KeyCode dashKey = KeyCode.F;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         J_Animator = gameObject.GetComponent<Animator>();
         cc = GetComponent<CharacterController>();

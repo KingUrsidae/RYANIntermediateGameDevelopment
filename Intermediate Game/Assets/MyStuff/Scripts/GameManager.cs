@@ -12,15 +12,20 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI J_MessageText;
     
     [Header("Panels")]
-    //public GameObject J_Panel;
+    public GameObject J_MenuPanel;
+    public GameObject J_SettingsPanel;
+    public GameObject J_UIPanel;
 
     [Header("Buttons")]
     public Button J_QuitButton;
+    public Button J_PlayButton;
+    public Button J_SettingsButton;
+
+    [Header("Settings stuff")]
 
     [Header("Enemies")]
     public GameObject[] J_Enemies;
     
-    // Game state stuff
     public enum GameState
     {
         Start,
@@ -31,8 +36,7 @@ public class GameManager : MonoBehaviour
     public GameState State { get { return J_GameState; } }
     private void Awake()
     {
-        J_GameState = GameState.Start;
-        //J_Panel.gameObject.SetActive(false);
+        
     }
     private void Start()
     {
@@ -40,20 +44,18 @@ public class GameManager : MonoBehaviour
         {
             J_Enemies[i].SetActive(true);
         }
-                
     }
     private bool OneLeft()
     {
-        int numTanksLeft = 0;
-
+        int numEnemiesLeft = 0;
         for (int i = 0; i < J_Enemies.Length; i++)
         {
             if (J_Enemies[i].activeSelf == true)
             {
-                numTanksLeft++;
+                numEnemiesLeft++;
             }
         }
-        return numTanksLeft <= 1;
+        return numEnemiesLeft <= 1;
     }
     private bool IsPlayerDead()
     {
@@ -71,7 +73,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            Application.Quit();
+            OnQuit();
         }
         switch (J_GameState)
         {
@@ -86,7 +88,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-    private void GameStateStart()
+    public void GameStateStart()
     {
         if (Input.GetKeyUp(KeyCode.Return) == true)
         {
@@ -95,9 +97,17 @@ public class GameManager : MonoBehaviour
     }
     private void GameStatePlaying()
     {
+        // panels 
+        J_SettingsPanel.gameObject.SetActive(false);
+        J_MenuPanel.gameObject.SetActive(false);
+        J_UIPanel.gameObject.SetActive(true);
+        // buttons
+        J_QuitButton.gameObject.SetActive(false);
+        J_PlayButton.gameObject.SetActive(false);
+        J_SettingsButton.gameObject.SetActive(false);
+        // other
+        J_AmmoCounterText.gameObject.SetActive(true);
         bool isGameOver = false;
-        //J_Panel.gameObject.SetActive(true);
-
         if (IsPlayerDead() == true)
         {
             J_MessageText.text = "YOU DIED";
@@ -107,31 +117,38 @@ public class GameManager : MonoBehaviour
         {
             J_MessageText.text = "YOU WON";
             isGameOver = true;
-            
         }
         if (isGameOver == true)
         {
             J_GameState = GameState.GameOver;
         }
     }
-    private void GameStateGameOver()
+    public void GameStateGameOver()
     {
-        if (Input.GetKeyDown(KeyCode.Return) == true)
+        if (Input.GetKeyUp(KeyCode.Return) == true)
         {
             OnNewGame();
         }
     }
     public void OnNewGame()
     {
-        //J_Panel.gameObject.SetActive(false);
-        J_AmmoCounterText.gameObject.SetActive(true);
-        J_MessageText.text = "";
-
+        // panels 
+        J_SettingsPanel.gameObject.SetActive(true);
+        J_MenuPanel.gameObject.SetActive(true);
+        J_UIPanel.gameObject.SetActive(false);
+        // buttons
+        J_QuitButton.gameObject.SetActive(true);
+        J_PlayButton.gameObject.SetActive(true);
+        J_SettingsButton.gameObject.SetActive(true);
+        // other
+        J_AmmoCounterText.gameObject.SetActive(false);
+    }
+    public void startGame()
+    {
         J_GameState = GameState.Playing;
-
-        for (int i = 0; i < J_Enemies.Length; i++)
-        {
-            J_Enemies[i].SetActive(true);
-        }
+    }
+    public void OnQuit()
+    {
+        Application.Quit();
     }
 }

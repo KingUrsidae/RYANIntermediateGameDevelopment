@@ -159,7 +159,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.028012358
+        value: 0.040005766
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -228,8 +228,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd764f640cbe8e4b88ac3a8eba71ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  J_MaxDamage: 4
-  J_MaxLifeTime: 60
-  J_ExplosionRadius: 30
-  J_ExplosionForce: 400
+  J_Damage: 1
   m_ExplosionParticles: {fileID: 19887218, guid: 6ec94bebfeb43a44c9a3811fdf0e916e, type: 3}

@@ -13,8 +13,8 @@ public class TimeController : MonoBehaviour
     public PostProcessVolume postProcessVolume;
     private ChromaticAberration chromaticAberration;
     private Vignette vignette;
-    private float originalVignetteIntensity;
-    private float originalChromeaticAberratonIntensity;
+    private float originalVignetteIntensity = 0f;
+    private float originalChromeaticAberratonIntensity = 0f;
     public float J_timeScale;
     /*
     timeScale

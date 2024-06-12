@@ -6,7 +6,7 @@ using UnityEngine.Animations;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
-    public bool lockCursor = true;
+    public bool lockCursor = false;
 
     [Header("Follow the target")]
     public Transform target;
@@ -22,12 +22,8 @@ public class ThirdPersonCamera : MonoBehaviour
     private Vector3 pivotEulers;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        if (lockCursor == true)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
         pivot = GetComponentInChildren<Camera>().transform.parent;
         pivotEulers = pivot.rotation.eulerAngles;
     }    
@@ -35,7 +31,7 @@ public class ThirdPersonCamera : MonoBehaviour
     private void Update()
     {
         HandleRotation();
-        
+        CheckCursor();
     }
     void HandleRotation()
     {
@@ -54,5 +50,23 @@ public class ThirdPersonCamera : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime * moveSpeed);
         
     }
-
+    void CheckCursor()
+    {
+        if (lockCursor == true)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        if (lockCursor == false)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+    public void LockCursor()
+    {
+        lockCursor = true;
+    }
+    public void UnLockCursor()
+    {
+        lockCursor = false;
+    }
 }

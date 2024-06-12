@@ -5,13 +5,13 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     [Header("Bullet Numbers")]
-    public float J_MaxDamage = 1f;
-    public float J_MaxLifeTime = 20f;
-    public float J_ExplosionRadius = 15;
-    public float J_ExplosionForce = 300f;
+    public float J_Damage = 1f;
+    private float J_MaxLifeTime = 20f;
+    private float J_ExplosionRadius = 15;
+    private float J_ExplosionForce = 300f;
 
     public ParticleSystem m_ExplosionParticles;
-    private void Start()
+    private void Update()
     {
         Destroy(gameObject, J_MaxLifeTime);
     }
@@ -25,7 +25,7 @@ public class BulletScript : MonoBehaviour
             PlayerHealth targetHealth = targetRigidbody.GetComponent<PlayerHealth>();
             if (targetHealth != null)
             {
-                float damage = J_MaxDamage; 
+                float damage = J_Damage; 
                 targetHealth.TakeDamage(damage);
             }
         }
