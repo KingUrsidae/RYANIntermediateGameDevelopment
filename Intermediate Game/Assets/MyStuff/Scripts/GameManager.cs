@@ -25,7 +25,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Enemies")]
     public GameObject[] J_Enemies;
-    
+
+    [Header("Other")]
+    public float J_gameTime;
     public enum GameState
     {
         Start,
@@ -42,7 +44,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < J_Enemies.Length; i++)
         {
-            J_Enemies[i].SetActive(true);
+            J_Enemies[i].SetActive(false);
         }
     }
     private bool OneLeft()
@@ -71,6 +73,10 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            ReloadScene();
+        }
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             OnQuit();
@@ -97,6 +103,9 @@ public class GameManager : MonoBehaviour
     }
     private void GameStatePlaying()
     {
+        bool isGameOver = false;
+        J_gameTime += Time.deltaTime;
+        int seconds = Mathf.RoundToInt(J_gameTime);
         // panels 
         J_SettingsPanel.gameObject.SetActive(false);
         J_MenuPanel.gameObject.SetActive(false);
@@ -107,7 +116,6 @@ public class GameManager : MonoBehaviour
         J_SettingsButton.gameObject.SetActive(false);
         // other
         J_AmmoCounterText.gameObject.SetActive(true);
-        bool isGameOver = false;
         if (IsPlayerDead() == true)
         {
             J_MessageText.text = "YOU DIED";
@@ -132,6 +140,7 @@ public class GameManager : MonoBehaviour
     }
     public void OnNewGame()
     {
+        J_gameTime = 0;
         // panels 
         J_SettingsPanel.gameObject.SetActive(true);
         J_MenuPanel.gameObject.SetActive(true);
@@ -141,7 +150,15 @@ public class GameManager : MonoBehaviour
         J_PlayButton.gameObject.SetActive(true);
         J_SettingsButton.gameObject.SetActive(true);
         // other
-        J_AmmoCounterText.gameObject.SetActive(false);
+        J_AmmoCounterText.gameObject.SetActive(true);
+        for (int i = 0; i < J_Enemies.Length; i++)
+        {
+            J_Enemies[i].SetActive(true);
+        }
+    }
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void startGame()
     {
@@ -151,4 +168,5 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
+
 }

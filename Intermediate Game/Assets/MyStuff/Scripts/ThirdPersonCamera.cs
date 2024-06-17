@@ -6,7 +6,7 @@ using UnityEngine.Animations;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
-    public bool lockCursor = false;
+    public bool lockCursor;
 
     [Header("Follow the target")]
     public Transform target;
@@ -24,6 +24,7 @@ public class ThirdPersonCamera : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        lockCursor = false;
         pivot = GetComponentInChildren<Camera>().transform.parent;
         pivotEulers = pivot.rotation.eulerAngles;
     }    
