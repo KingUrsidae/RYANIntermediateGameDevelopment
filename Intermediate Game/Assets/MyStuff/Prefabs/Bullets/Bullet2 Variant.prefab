@@ -108,6 +108,18 @@ CapsuleCollider:
   m_Height: 0.5
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0.2}
+--- !u!122 &1914742450364873930
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818179005918684673}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 2186169531
+  m_Size: 0.1
 --- !u!96 &2840416310847508411
 TrailRenderer:
   serializedVersion: 2

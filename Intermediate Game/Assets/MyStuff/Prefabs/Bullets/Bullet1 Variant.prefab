@@ -212,6 +212,18 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!122 &8545333902588069990
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995361445990338272}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 2185601720
+  m_Size: 0.08
 --- !u!114 &543832859532639669
 MonoBehaviour:
   m_ObjectHideFlags: 0
