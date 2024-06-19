@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.PostProcessing;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,10 +23,16 @@ public class GameManager : MonoBehaviour
     public Button J_SettingsButton;
 
     [Header("Settings stuff")]
+    public TextMeshProUGUI J_FOVSliderText;
+    public Slider FOVSlider;
+    public TextMeshProUGUI J_VolumeSliderText;
+    public Slider VolumeSlider;
+    public TextMeshProUGUI J_SensSliderText;
+    public Slider SensSlider;
 
     [Header("Enemies")]
     public GameObject[] J_Enemies;
-
+   
     [Header("Other")]
     public float J_gameTime;
     public enum GameState
@@ -42,6 +49,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        
         for (int i = 0; i < J_Enemies.Length; i++)
         {
             J_Enemies[i].SetActive(false);
@@ -73,6 +81,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        SlidersValue();
         if (Input.GetKeyUp(KeyCode.R))
         {
             ReloadScene();
@@ -169,4 +178,10 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void SlidersValue()
+    {
+        float J_FOVNum = FOVSlider.value; J_FOVSliderText.text = string.Format("FOV:{000}", J_FOVNum);
+        float J_VolumeNum = VolumeSlider.value; J_VolumeSliderText.text = string.Format("Volume: {000}%", J_VolumeNum);
+        float J_SensNum = SensSlider.value; J_SensSliderText.text = string.Format("Mouse Sensitivity: {000}%", J_SensNum);
+    }
 }

@@ -20,7 +20,7 @@ public class TimeController : MonoBehaviour
     timeScale
     1 =  realtime
     .5 = 2x slower
-    adjust bettween 0 and 1
+    adjust between 0 and 1
     */
     public void DoSlowdown()
     {
