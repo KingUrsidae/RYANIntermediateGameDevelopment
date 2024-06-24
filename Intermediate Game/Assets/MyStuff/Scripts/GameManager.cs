@@ -16,11 +16,13 @@ public class GameManager : MonoBehaviour
     public GameObject J_MenuPanel;
     public GameObject J_SettingsPanel;
     public GameObject J_UIPanel;
+    public GameObject J_GameOverPanel;
 
     [Header("Buttons")]
     public Button J_QuitButton;
     public Button J_PlayButton;
     public Button J_SettingsButton;
+    public Button J_RetryButton;
 
     [Header("Settings stuff")]
     public TextMeshProUGUI J_FOVSliderText;
@@ -32,9 +34,18 @@ public class GameManager : MonoBehaviour
 
     [Header("Enemies")]
     public GameObject[] J_Enemies;
-   
+
+    [Header("Effects")]
+    public PostProcessVolume postProcessVolume;
+    public float J_newTempreture;
+    private float originalTempreture;
+    private float originalExposure;
+    private ColorGrading colorGrading;
+
     [Header("Other")]
     public float J_gameTime;
+    public ThirdPersonCamera thirdPersonCamera;
+    public PlayerHealth playerHealth;
     public enum GameState
     {
         Start,
@@ -45,7 +56,10 @@ public class GameManager : MonoBehaviour
     public GameState State { get { return J_GameState; } }
     private void Awake()
     {
-        
+        if (postProcessVolume.profile.TryGetSettings(out colorGrading))
+        {
+            originalTempreture = colorGrading.temperature.value;
+        }
     }
     private void Start()
     {
@@ -119,10 +133,12 @@ public class GameManager : MonoBehaviour
         J_SettingsPanel.gameObject.SetActive(false);
         J_MenuPanel.gameObject.SetActive(false);
         J_UIPanel.gameObject.SetActive(true);
+        J_GameOverPanel.gameObject.SetActive(false);
         // buttons
         J_QuitButton.gameObject.SetActive(false);
         J_PlayButton.gameObject.SetActive(false);
         J_SettingsButton.gameObject.SetActive(false);
+        J_RetryButton.gameObject.SetActive(false);
         // other
         J_AmmoCounterText.gameObject.SetActive(true);
         if (IsPlayerDead() == true)
@@ -142,10 +158,9 @@ public class GameManager : MonoBehaviour
     }
     public void GameStateGameOver()
     {
-        if (Input.GetKeyUp(KeyCode.Return) == true)
-        {
-            OnNewGame();
-        }
+        thirdPersonCamera.UnLockCursor();
+        J_GameOverPanel.gameObject.SetActive(true);
+        J_RetryButton.gameObject.SetActive(true);
     }
     public void OnNewGame()
     {
@@ -154,10 +169,12 @@ public class GameManager : MonoBehaviour
         J_SettingsPanel.gameObject.SetActive(true);
         J_MenuPanel.gameObject.SetActive(true);
         J_UIPanel.gameObject.SetActive(false);
+        J_GameOverPanel.gameObject.SetActive(false);
         // buttons
         J_QuitButton.gameObject.SetActive(true);
         J_PlayButton.gameObject.SetActive(true);
         J_SettingsButton.gameObject.SetActive(true);
+        J_RetryButton.gameObject.SetActive(false);
         // other
         J_AmmoCounterText.gameObject.SetActive(true);
         for (int i = 0; i < J_Enemies.Length; i++)
@@ -183,5 +200,20 @@ public class GameManager : MonoBehaviour
         float J_FOVNum = FOVSlider.value; J_FOVSliderText.text = string.Format("FOV:{000}", J_FOVNum);
         float J_VolumeNum = VolumeSlider.value; J_VolumeSliderText.text = string.Format("Volume: {000}%", J_VolumeNum);
         float J_SensNum = SensSlider.value; J_SensSliderText.text = string.Format("Mouse Sensitivity: {000}%", J_SensNum);
+    }
+
+    public void ApplyLowHealth()
+    {
+        if (colorGrading != null)
+        {
+            colorGrading.temperature.value = J_newTempreture;
+        }
+    }
+    public void RevertLowHealth()
+    {
+        if (colorGrading != null)
+        {
+            colorGrading.temperature.value = originalTempreture;
+        }
     }
 }

@@ -18,7 +18,7 @@ public class ThirdPersonMove : MonoBehaviour
 
     [Header("Movement")]
     CharacterController cc;
-    public float moveSpeed = 4;
+    public float moveSpeed = 3;
     
 
     [Header("Jumping & Gravity")]
@@ -111,7 +111,7 @@ public class ThirdPersonMove : MonoBehaviour
         }
         if (dashCdTimer >= 0)
         {
-            dashCdTimer -= Time.unscaledDeltaTime;
+            dashCdTimer -= Time.deltaTime;
             canDash = false;
         }
         if (dashCdTimer <= 0)

@@ -23,7 +23,7 @@ public class Shooting : MonoBehaviour
     private void Update()
     {
         CheckFire();
-        int Ammo = J_Ammo; J_AmmoCounterText.text = string.Format("Ammo: {00}", Ammo);
+        int Ammo = J_Ammo; J_AmmoCounterText.text = string.Format("Special ammo left: {00}", Ammo);
     }
     void CheckFire()
     {
