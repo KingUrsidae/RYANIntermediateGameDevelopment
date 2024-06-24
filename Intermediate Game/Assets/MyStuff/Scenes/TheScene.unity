@@ -6280,7 +6280,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2145669712}
   - component: {fileID: 2145669714}
-  - component: {fileID: 2145669713}
   - component: {fileID: 2145669715}
   m_Layer: 0
   m_Name: MenuCamera
@@ -6304,14 +6303,6 @@ Transform:
   m_Father: {fileID: 1952910171}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 5, y: 5, z: 5}
---- !u!81 &2145669713
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2145669711}
-  m_Enabled: 1
 --- !u!20 &2145669714
 Camera:
   m_ObjectHideFlags: 0
