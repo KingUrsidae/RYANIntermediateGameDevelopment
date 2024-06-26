@@ -92,7 +92,7 @@ public class ThirdPersonMove : MonoBehaviour
             isJumping = true; verticalVelocity = jumpSpeed;  
         }
         direction.y = verticalVelocity;
-        cc.Move(direction * Time.unscaledDeltaTime);
+        cc.Move(direction * Time.deltaTime);
     }
     void AnimationStuff()
     {

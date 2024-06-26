@@ -7,13 +7,15 @@ using UnityEngine.Animations;
 public class ThirdPersonCamera : MonoBehaviour
 {
     public bool lockCursor;
+    public GameManager gameManager;
 
     [Header("Follow the target")]
     public Transform target;
     public float moveSpeed = 7f;
 
     [Header("Rotate camrea")]
-    public float turnSpeed = 5f;
+    public float turnSpeed;// = 5f;
+    public float J_Sens;
     public float tiltMax = 75f;
     public float tiltMin = 45f;
     private Transform pivot;
@@ -36,6 +38,8 @@ public class ThirdPersonCamera : MonoBehaviour
     }
     void HandleRotation()
     {
+        J_Sens = gameManager.J_SensNum;
+        turnSpeed = 2 * J_Sens;
         float x = Input.GetAxis("Mouse X");
         lookAngle += x * turnSpeed;
         transform.localRotation = Quaternion.Euler(0, lookAngle, 0);

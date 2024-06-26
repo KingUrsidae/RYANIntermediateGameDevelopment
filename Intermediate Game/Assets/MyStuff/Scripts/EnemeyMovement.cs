@@ -12,16 +12,25 @@ public class EnemeyMovement : MonoBehaviour
     private NavMeshAgent J_NavAgent;
     private Rigidbody J_Rigidbody;
     private bool J_Follow;
-        private void Awake()
+
+    [Header("Animation")]
+    Animator J_EAnimator;
+    private float forwardDirection;
+    private float sideDirection;
+    private Transform J_Enemey;
+    Vector3 EnemeyMove;
+    private void Awake()
     {
         J_Player = GameObject.FindGameObjectWithTag("Player");
         J_NavAgent = GetComponent<NavMeshAgent>();
         J_Rigidbody = GetComponent<Rigidbody>();
+        J_Enemey = gameObject.GetComponent<Transform>();
         J_Follow = false;
     }
 
     private void OnEnable()
     {
+        J_EAnimator = gameObject.GetComponent<Animator>();
         J_Rigidbody.isKinematic = false;
     }
     private void OnDisable()
@@ -44,6 +53,12 @@ public class EnemeyMovement : MonoBehaviour
     }
     private void Update()
     {
+        EnemeyMove = 1 * J_Enemey.forward + J_Enemey.right * 1;
+        EnemeyMove.Normalize();
+        forwardDirection = EnemeyMove.z;//GetAxis("Vertical");
+        sideDirection = EnemeyMove.x; //GetAxis("Horizontal");
+        J_EAnimator.SetFloat("Horizontal", forwardDirection);
+        J_EAnimator.SetFloat("Vertical", sideDirection);
         if (J_Follow == false)
             return;
         float distance = (J_Player.transform.position - transform.position).magnitude;
