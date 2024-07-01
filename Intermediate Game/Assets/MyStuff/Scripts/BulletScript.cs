@@ -22,11 +22,11 @@ public class BulletScript : MonoBehaviour
         if (targetRigidbody != null)
         {
             targetRigidbody.AddExplosionForce(J_ExplosionForce, transform.position, J_ExplosionRadius);            
-            PlayerHealth targetHealth = targetRigidbody.GetComponent<PlayerHealth>();
+            Health targetHealth = targetRigidbody.GetComponent<Health>();
 
             if (targetHealth != null)
             {
-                float damage = CalculateDamage(targetRigidbody.position);
+                float damage = CalculateDamage();
                 targetHealth.TakeDamage(damage);
             }
         }
@@ -35,12 +35,9 @@ public class BulletScript : MonoBehaviour
         Destroy(J_ExplosionParticles.gameObject, J_ExplosionParticles.main.duration);
         Destroy(gameObject);
     }
-    private float CalculateDamage(Vector3 targetPosition)
+    private float CalculateDamage()
     {
-        Vector3 explosionToTarget = targetPosition - transform.position;
-        float explosionDistance = explosionToTarget.magnitude;
-        float relativeDistance = (J_ExplosionRadius - explosionDistance) / J_ExplosionRadius;
-        float damage = relativeDistance * J_Damage;
+        float damage = J_Damage;
         damage = Mathf.Max(0f, damage);
         return damage;
     }

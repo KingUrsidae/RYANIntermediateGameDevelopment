@@ -17,12 +17,16 @@ public class GameManager : MonoBehaviour
     public GameObject J_SettingsPanel;
     public GameObject J_UIPanel;
     public GameObject J_GameOverPanel;
+    public GameObject J_GameWonPanel;
 
     [Header("Buttons")]
     public Button J_QuitButton;
+    public Button J_QuitButton2;
+    public Button J_QuitButton3;
     public Button J_PlayButton;
     public Button J_SettingsButton;
     public Button J_RetryButton;
+    public Button J_AgainButton;
 
     [Header("Settings stuff")]
     public TextMeshProUGUI J_FOVSliderText;
@@ -32,6 +36,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI J_SensSliderText;
     public Slider SensSlider;
     public float J_SensNum;
+    public float J_SensValue;
 
     [Header("Enemies")]
     public GameObject[] J_Enemies;
@@ -46,7 +51,9 @@ public class GameManager : MonoBehaviour
     [Header("Other")]
     public float J_gameTime;
     public ThirdPersonCamera thirdPersonCamera;
-    public PlayerHealth playerHealth;
+    public Health health;
+    private bool isGameOverFail = false;
+    private bool isGameOverWin = false;
     public enum GameState
     {
         Start,
@@ -135,21 +142,25 @@ public class GameManager : MonoBehaviour
         J_MenuPanel.gameObject.SetActive(false);
         J_UIPanel.gameObject.SetActive(true);
         J_GameOverPanel.gameObject.SetActive(false);
+        J_GameWonPanel.gameObject.SetActive(false);
         // buttons
         J_QuitButton.gameObject.SetActive(false);
+        J_QuitButton2.gameObject.SetActive(false);
+        J_QuitButton3.gameObject.SetActive(false);
         J_PlayButton.gameObject.SetActive(false);
         J_SettingsButton.gameObject.SetActive(false);
         J_RetryButton.gameObject.SetActive(false);
+        J_AgainButton.gameObject.SetActive(false);
         // other
         J_AmmoCounterText.gameObject.SetActive(true);
         if (IsPlayerDead() == true)
         {
-            J_MessageText.text = "YOU DIED";
+            isGameOverFail = true;
             isGameOver = true;
         }
-        else if (OneLeft() == true)
+        if (OneLeft() == true)
         {
-            J_MessageText.text = "YOU WON";
+            isGameOverWin = true;
             isGameOver = true;
         }
         if (isGameOver == true)
@@ -160,8 +171,21 @@ public class GameManager : MonoBehaviour
     public void GameStateGameOver()
     {
         thirdPersonCamera.UnLockCursor();
-        J_GameOverPanel.gameObject.SetActive(true);
-        J_RetryButton.gameObject.SetActive(true);
+        J_UIPanel.gameObject.SetActive(false);
+        if (isGameOverFail == true)
+        {
+            J_GameOverPanel.gameObject.SetActive(true);
+            J_RetryButton.gameObject.SetActive(true);
+            J_QuitButton2.gameObject.SetActive(true);
+            
+        }
+        else if (isGameOverWin == true)
+        {
+            J_GameWonPanel.gameObject.SetActive(true);
+            J_AgainButton.gameObject.SetActive(true);
+            J_QuitButton3.gameObject.SetActive(true);
+        }
+        
     }
     public void OnNewGame()
     {
@@ -171,11 +195,15 @@ public class GameManager : MonoBehaviour
         J_MenuPanel.gameObject.SetActive(true);
         J_UIPanel.gameObject.SetActive(false);
         J_GameOverPanel.gameObject.SetActive(false);
+        J_GameWonPanel.gameObject.SetActive(false);
         // buttons
         J_QuitButton.gameObject.SetActive(true);
+        J_QuitButton2.gameObject.SetActive(false);
+        J_QuitButton3.gameObject.SetActive(false);
         J_PlayButton.gameObject.SetActive(true);
         J_SettingsButton.gameObject.SetActive(true);
         J_RetryButton.gameObject.SetActive(false);
+        J_AgainButton.gameObject.SetActive(false);
         // other
         J_AmmoCounterText.gameObject.SetActive(true);
         for (int i = 0; i < J_Enemies.Length; i++)
@@ -201,6 +229,7 @@ public class GameManager : MonoBehaviour
         float J_FOVNum = FOVSlider.value; J_FOVSliderText.text = string.Format("FOV:{000}", J_FOVNum);
         float J_VolumeNum = VolumeSlider.value; J_VolumeSliderText.text = string.Format("Volume: {000}%", J_VolumeNum);
         float J_SensNum = SensSlider.value; J_SensSliderText.text = string.Format("Mouse Sensitivity: {000}", J_SensNum);
+        J_SensValue = J_SensNum;
     }
 
     public void ApplyLowHealth()

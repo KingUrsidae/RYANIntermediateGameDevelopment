@@ -14,8 +14,7 @@ public class ThirdPersonCamera : MonoBehaviour
     public float moveSpeed = 7f;
 
     [Header("Rotate camrea")]
-    public float turnSpeed;// = 5f;
-    public float J_Sens;
+    public float turnSpeed;
     public float tiltMax = 75f;
     public float tiltMin = 45f;
     private Transform pivot;
@@ -38,8 +37,8 @@ public class ThirdPersonCamera : MonoBehaviour
     }
     void HandleRotation()
     {
-        J_Sens = gameManager.J_SensNum;
-        turnSpeed = 2 * J_Sens;
+        turnSpeed = gameManager.J_SensValue;
+
         float x = Input.GetAxis("Mouse X");
         lookAngle += x * turnSpeed;
         transform.localRotation = Quaternion.Euler(0, lookAngle, 0);
