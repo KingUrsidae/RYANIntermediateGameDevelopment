@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// This is the health code for both enemies and the player, it reffrences the game manager for cidimatic effects but only for the player. 
+/// </summary>
 public class Health : MonoBehaviour
 {
     [Header("Health")]

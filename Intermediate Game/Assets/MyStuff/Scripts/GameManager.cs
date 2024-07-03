@@ -5,7 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.PostProcessing;
-
+/// <summary>
+/// This is the game manager, it manages everything form ui to game states.
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     [Header("Texts")]
@@ -77,6 +79,10 @@ public class GameManager : MonoBehaviour
             J_Enemies[i].SetActive(false);
         }
     }
+    /// <summary>
+    /// This code counts the player aswell, if one is left you win as you can be the only left
+    /// </summary>
+    /// <returns></returns>
     private bool OneLeft()
     {
         int numEnemiesLeft = 0;
@@ -223,13 +229,15 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
-
+    /// <summary>
+    /// This is the sliders code. it makes the sliders do things and is uptated every update. this should probably only update in the menu.
+    /// </summary>
     public void SlidersValue()
     {
         float J_FOVNum = FOVSlider.value; J_FOVSliderText.text = string.Format("FOV:{000}", J_FOVNum);
         float J_VolumeNum = VolumeSlider.value; J_VolumeSliderText.text = string.Format("Volume: {000}%", J_VolumeNum);
-        float J_SensNum = SensSlider.value; J_SensSliderText.text = string.Format("Mouse Sensitivity: {000}", J_SensNum);
-        J_SensValue = J_SensNum;
+        float J_SensNum = SensSlider.value; J_SensSliderText.text = string.Format("Mouse Sensitivity: {000}%", J_SensNum);
+        J_SensValue = J_SensNum/3f;
     }
 
     public void ApplyLowHealth()

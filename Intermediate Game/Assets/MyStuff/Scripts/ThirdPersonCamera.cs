@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Animations;
-
+/// <summary>
+/// This is the camera scrip and it also reffrences the game manager so that the cursor can change sensitivity and be unlocked and locked.
+/// </summary>
 public class ThirdPersonCamera : MonoBehaviour
 {
     public bool lockCursor;

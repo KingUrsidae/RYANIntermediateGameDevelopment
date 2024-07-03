@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+/// <summary>
+/// This is the shooting script, this allows for firing and ui elements.
+/// </summary>
 public class Shooting : MonoBehaviour
 {
     [Header("Firerate")]

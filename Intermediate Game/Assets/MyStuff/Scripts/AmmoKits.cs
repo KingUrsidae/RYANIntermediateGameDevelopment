@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// This gives special ammo for the player.
+/// </summary>
 public class AmmoKits : MonoBehaviour
 {
     public Shooting shooting;

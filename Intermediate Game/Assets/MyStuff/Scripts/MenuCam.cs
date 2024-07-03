@@ -6,6 +6,6 @@ public class MenuCam : MonoBehaviour
 {
     void Update()
     {
-       gameObject.transform.Rotate(0, Time.deltaTime * 30, 0); 
+       gameObject.transform.Rotate(0, Time.deltaTime * 20, 0); 
     }
 }

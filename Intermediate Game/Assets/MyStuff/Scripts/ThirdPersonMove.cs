@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Rendering.PostProcessing;
-
+/// <summary>
+/// This is the player movement scrip. lots of anaimation and inputs stuff here. When the dash function is called the time controller is activvated as DoSlowdown
+/// </summary>
 public class ThirdPersonMove : MonoBehaviour
 {
     //Inputs
