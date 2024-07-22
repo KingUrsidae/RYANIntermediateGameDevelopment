@@ -23,7 +23,6 @@ public class BulletScript : MonoBehaviour
         {
             targetRigidbody.AddExplosionForce(J_ExplosionForce, transform.position, J_ExplosionRadius);            
             Health targetHealth = targetRigidbody.GetComponent<Health>();
-
             if (targetHealth != null)
             {
                 float damage = CalculateDamage();
