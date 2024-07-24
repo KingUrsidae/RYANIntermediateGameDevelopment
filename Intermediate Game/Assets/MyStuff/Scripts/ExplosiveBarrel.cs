@@ -21,7 +21,7 @@ public class ExplosiveBarrel : MonoBehaviour
         J_sphere.enabled = true;
         J_ExplosionParticles.transform.parent = null;
         J_ExplosionParticles.Play();
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }    
     public void OnTriggerEnter(Collider other)
     {

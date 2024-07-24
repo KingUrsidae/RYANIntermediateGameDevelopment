@@ -135,7 +135,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 70f083013bed4304fa0c0c2f90c36bd1, type: 2}
     - target: {fileID: 7735074560562074919, guid: 609644f473874434a94bb21397071838, type: 3}
       propertyPath: m_Name
-      value: TheEnemey1
+      value: TheEnemey1 Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 609644f473874434a94bb21397071838, type: 3}
@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CloseDistance: 4
+  J_EAnimator: {fileID: 5866666021909216657, guid: 425f8c590284a8a4395d962fa63c4bc8, type: 3}
 --- !u!114 &302929180
 MonoBehaviour:
   m_ObjectHideFlags: 0

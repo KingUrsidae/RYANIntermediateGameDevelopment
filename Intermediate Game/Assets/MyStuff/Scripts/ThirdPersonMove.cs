@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Rendering.PostProcessing;
@@ -21,12 +22,11 @@ public class ThirdPersonMove : MonoBehaviour
     [Header("Movement")]
     CharacterController cc;
     public float moveSpeed = 3;
-    
 
     [Header("Jumping & Gravity")]
     public KeyCode JumpKey = KeyCode.Space;
     private bool isJumping;
-    public float jumpSpeed = 20.0f;
+    public float jumpSpeed = 22.0f;
     public float gravityMultiplier = 3;
     float verticalVelocity = 0;
 
