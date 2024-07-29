@@ -14,17 +14,12 @@ public class EnemeyMovement : MonoBehaviour
     private bool J_Follow;
 
     [Header("Animation")]
-    Animator J_EAnimator;
-    //private float forwardDirection;
-    //private float sideDirection;
-    //private Transform J_Enemey;
-    //Vector3 EnemeyMove;
+    Animator J_EAnimator;                  
     private void Awake()
     {
         J_Player = GameObject.FindGameObjectWithTag("Player");
         J_NavAgent = GetComponent<NavMeshAgent>();
         J_Rigidbody = GetComponent<Rigidbody>();
-        //J_Enemey = gameObject.GetComponent<Transform>();
         J_Follow = false;
     }
 
@@ -53,8 +48,8 @@ public class EnemeyMovement : MonoBehaviour
     }
     private void Update()
     {
-        J_EAnimator.SetFloat("Horizontal", J_Rigidbody.velocity.normalized.x);
-        J_EAnimator.SetFloat("Vertical", J_Rigidbody.velocity.normalized.z);
+        J_EAnimator.SetFloat("Horizontal", J_Rigidbody.position.normalized.x);
+        J_EAnimator.SetFloat("Vertical", J_Rigidbody.position.normalized.z);
         
         if (J_Follow == false)
             return;

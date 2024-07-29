@@ -91,15 +91,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6922967178862317469, guid: 609644f473874434a94bb21397071838, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7
+      value: 181.7
       objectReference: {fileID: 0}
     - target: {fileID: 6922967178862317469, guid: 609644f473874434a94bb21397071838, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 107
       objectReference: {fileID: 0}
     - target: {fileID: 6922967178862317469, guid: 609644f473874434a94bb21397071838, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17
+      value: 101.3
       objectReference: {fileID: 0}
     - target: {fileID: 6922967178862317469, guid: 609644f473874434a94bb21397071838, type: 3}
       propertyPath: m_LocalRotation.w
@@ -222,7 +222,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CloseDistance: 4
-  J_EAnimator: {fileID: 5866666021909216657, guid: 425f8c590284a8a4395d962fa63c4bc8, type: 3}
 --- !u!114 &302929180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ab49ee5ebb19240a8426ebc0802d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  J_StartingHealth: 5
+  J_StartingHealth: 15
   J_CurrentHealth: 0
   gameManager: {fileID: 0}
 --- !u!4 &1867809317914928885 stripped

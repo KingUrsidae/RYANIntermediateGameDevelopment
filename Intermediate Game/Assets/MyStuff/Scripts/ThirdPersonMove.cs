@@ -129,7 +129,6 @@ public class ThirdPersonMove : MonoBehaviour
             dashCdTimer = dashCd;
         timeController.DoSlowdown();
     }
-   
     /*Reffrences
     
     */

@@ -1,47 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ExplosiveBarrel : MonoBehaviour
 {
     [Header("Explosion Numbers")]
-    private float J_ExplosionRadius = 7;
+    public float J_ExplosionRadius = 10f;
     public float J_ExplosionForce = 100f;
+    public float J_Damage = 10f; 
     public ParticleSystem J_ExplosionParticles;
-    public SphereCollider J_sphere;
-    public float J_Damage = 10f;
-    private void Start()
+    public GameObject J_ExplodingBarrel;
+    public void Awake()
     {
-        GetComponent<SphereCollider>();
-        J_sphere.enabled = false;
+        J_ExplodingBarrel.SetActive(true);
     }
-    
-    private void OnCollisionEnter(Collision other)
+    public void Explode()
     {
-        J_sphere.enabled = true;
+        J_ExplodingBarrel.SetActive(false);                                
         J_ExplosionParticles.transform.parent = null;
         J_ExplosionParticles.Play();
-        Destroy(gameObject);
-    }    
-    public void OnTriggerEnter(Collider other)
-    {
-        Rigidbody targetRigidbody = other.gameObject.GetComponent<Rigidbody>();
-        if (targetRigidbody != null)
+        Collider[] enemeies = Physics.OverlapSphere(transform.position, J_ExplosionRadius);
+        foreach(Collider enemey in enemeies)
         {
-            targetRigidbody.AddExplosionForce(J_ExplosionForce, transform.position, J_ExplosionRadius);
-            Health targetHealth = targetRigidbody.GetComponent<Health>();
-            if (targetHealth != null && J_sphere.enabled == true)
+            Rigidbody targetRigidbody = enemey.gameObject.GetComponent<Rigidbody>();
+            if (targetRigidbody != null)
             {
-                float damage = CalculateDamage();
-                targetHealth.TakeDamage(damage);
+                targetRigidbody.AddExplosionForce(J_ExplosionForce, transform.position, J_ExplosionRadius);
+                Health targetHealth = targetRigidbody.GetComponent<Health>();
+                if (targetHealth != null)
+                {
+                    targetHealth.TakeDamage(J_Damage);
+                }
             }
-        }
+        }         
     }
-    private float CalculateDamage()
+    private void OnDrawGizmos()
     {
-        J_sphere.enabled = false;
-        float damage = J_Damage;
-        damage = Mathf.Max(0f, damage);
-        return damage;
+        Gizmos.DrawWireSphere(transform.position, J_ExplosionRadius);
     }
+    private void OnCollisionEnter(Collision other)
+    {
+        Explode();
+    }    
 }

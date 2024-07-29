@@ -13,15 +13,11 @@ public class Shooting : MonoBehaviour
 
     [Header("Shooting stuff")]
     public Transform m_FireTransform;
-    public float J_BasicLaunchForce = 200f;
+    public float J_BasicLaunchForce = 50f;
     public int J_Ammo = 0;
     public Rigidbody J_Bullet; public Rigidbody J_Bullet2;
-    public TextMeshProUGUI J_AmmoCounterText;  
-
-    private void Awake()
-    {
-        
-    }
+    public TextMeshProUGUI J_AmmoCounterText;
+    public bool InfiniteAmmo;
     private void Update()
     {
         CheckFire();
@@ -51,13 +47,31 @@ public class Shooting : MonoBehaviour
     }
        private void Fire2()
     {
-        J_Ammo = J_Ammo - 1;
         Rigidbody shellInstance = Instantiate(J_Bullet2, m_FireTransform.position, m_FireTransform.rotation);
         shellInstance.velocity = J_BasicLaunchForce * m_FireTransform.forward;
-
+        if (InfiniteAmmo == false)
+        {
+            J_Ammo = J_Ammo - 1;
+        }
     }
     public void AddAmmo(int newAmmo)
     {
         J_Ammo += newAmmo;
+    }
+    public void toggleInfiniteAmmoOn()
+    {
+        InfiniteAmmo = true;
+    }
+    public void toggleInfiniteAmmoOff()
+    {
+        InfiniteAmmo = false;
+    }
+    public void toggleNoFireRateOn()
+    {
+        J_FireRate = 0.05f;
+    }
+    public void toggleNoFireRateOff()
+    {
+        J_FireRate = 0.5f;
     }
 }
