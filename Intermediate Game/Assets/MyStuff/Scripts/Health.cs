@@ -10,19 +10,13 @@ public class Health : MonoBehaviour
     public float J_StartingHealth = 2f;
     public float J_CurrentHealth;
     public GameManager gameManager;
-    bool GodMode;
-
     private void OnEnable()
     {
         J_CurrentHealth = J_StartingHealth;
-        GodMode = false;
     }
     public void TakeDamage(float damage)
     {
-        if(GodMode == false)
-        {
-            J_CurrentHealth -= damage;
-        }
+        J_CurrentHealth -= damage;
         if (CompareTag("Player"))
         {
             gameManager.ApplyLowHealth();
@@ -46,20 +40,9 @@ public class Health : MonoBehaviour
             J_CurrentHealth = J_StartingHealth;
         }
     }
-    public void GlassModeON()
+    public void GlassModeOn()
     {
         J_CurrentHealth = 1f;
-    }
-    public void GlassModeOff()
-    {
-        J_CurrentHealth = J_StartingHealth;
-    }
-    public void GodModeON()
-    {
-        GodMode = true;
-    }
-    public void GodModeOff()
-    {
-        GodMode = false;
+        J_StartingHealth = 1f;
     }
 }

@@ -9,7 +9,7 @@ public class Shooting : MonoBehaviour
 {
     [Header("Firerate")]
     public float J_FireRate = 0.5f;
-    private float timeToFire = 0.01f;
+    private float timeToFire;
 
     [Header("Shooting stuff")]
     public Transform m_FireTransform;
@@ -17,7 +17,9 @@ public class Shooting : MonoBehaviour
     public int J_Ammo = 0;
     public Rigidbody J_Bullet; public Rigidbody J_Bullet2;
     public TextMeshProUGUI J_AmmoCounterText;
-    public bool InfiniteAmmo;
+    public bool InfiniteAmmo = false;
+    //cheats
+    private bool NoFireRate = false;
     private void Update()
     {
         CheckFire();
@@ -32,12 +34,26 @@ public class Shooting : MonoBehaviour
         if (Input.GetMouseButton(0) && timeToFire <= 0)
         {
             Fire();
-            timeToFire = J_FireRate;
+            if (NoFireRate == false)
+            {
+                timeToFire = J_FireRate;
+            }
+            else
+            {
+                timeToFire = 0.04f;
+            }
         }
         if (Input.GetMouseButton(1) && timeToFire <= 0 && J_Ammo > 0)
         {
             Fire2();
-            timeToFire = J_FireRate + 0.5f;
+            if (NoFireRate == false)
+            {
+                timeToFire = J_FireRate + 0.5f;
+            }
+            else
+            {
+                timeToFire = 0.06f;
+            }
         }
     }
     private void Fire()
@@ -49,29 +65,14 @@ public class Shooting : MonoBehaviour
     {
         Rigidbody shellInstance = Instantiate(J_Bullet2, m_FireTransform.position, m_FireTransform.rotation);
         shellInstance.velocity = J_BasicLaunchForce * m_FireTransform.forward;
-        if (InfiniteAmmo == false)
-        {
-            J_Ammo = J_Ammo - 1;
-        }
+        J_Ammo = J_Ammo - 1;
     }
     public void AddAmmo(int newAmmo)
     {
         J_Ammo += newAmmo;
     }
-    public void toggleInfiniteAmmoOn()
+    public void ChangeFireRate()
     {
-        InfiniteAmmo = true;
-    }
-    public void toggleInfiniteAmmoOff()
-    {
-        InfiniteAmmo = false;
-    }
-    public void toggleNoFireRateOn()
-    {
-        J_FireRate = 0.05f;
-    }
-    public void toggleNoFireRateOff()
-    {
-        J_FireRate = 0.5f;
+        NoFireRate = true;
     }
 }

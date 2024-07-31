@@ -253,11 +253,4 @@ public class GameManager : MonoBehaviour
             colorGrading.temperature.value = originalTempreture;
         }
     }
-    public void BlindMode()
-    {
-        if (colorGrading != null)
-        {
-            colorGrading.contrast.value = -100f;
-        }
-    }
 }

@@ -12,7 +12,8 @@ public class ThirdPersonMove : MonoBehaviour
     //Inputs
     float forwardDirection;
     float sideDirection;
-
+    //cheats
+    private bool IsFastMoveSpeed = false;
     [Header("Camera")]
     public Transform cam;
     Vector3 camForward;
@@ -21,7 +22,7 @@ public class ThirdPersonMove : MonoBehaviour
 
     [Header("Movement")]
     CharacterController cc;
-    public float moveSpeed = 3;
+    public float moveSpeed;
 
     [Header("Jumping & Gravity")]
     public KeyCode JumpKey = KeyCode.Space;
@@ -64,6 +65,7 @@ public class ThirdPersonMove : MonoBehaviour
         Movement();
         AnimationStuff();
         CheckDash();
+        
     }
     void Inputs()
     {
@@ -83,6 +85,14 @@ public class ThirdPersonMove : MonoBehaviour
     }
     void Movement()
     {
+        if (IsFastMoveSpeed == true)
+        {
+            moveSpeed = 20f;
+        }
+        else
+        {
+            moveSpeed = 5f;
+        }
         Vector3 direction = transform.forward * move.z * moveSpeed;
         if (cc.isGrounded)
         {
@@ -128,6 +138,10 @@ public class ThirdPersonMove : MonoBehaviour
         else
             dashCdTimer = dashCd;
         timeController.DoSlowdown();
+    }
+    public void NewMoveSpeed()
+    {
+        IsFastMoveSpeed = true;
     }
     /*Reffrences
     
