@@ -12,8 +12,6 @@ public class EnemeyMovement : MonoBehaviour
     private NavMeshAgent J_NavAgent;
     private Rigidbody J_Rigidbody;
     private bool J_Follow;
-
-    [Header("Animation")]
     Animator J_EAnimator;                  
     private void Awake()
     {
@@ -48,8 +46,8 @@ public class EnemeyMovement : MonoBehaviour
     }
     private void Update()
     {
-        J_EAnimator.SetFloat("Horizontal", J_Rigidbody.position.normalized.x);
-        J_EAnimator.SetFloat("Vertical", J_Rigidbody.position.normalized.z);
+        J_EAnimator.SetFloat("Horizontal", J_Rigidbody.velocity.normalized.x);
+        J_EAnimator.SetFloat("Vertical", J_Rigidbody.velocity.normalized.z);
         
         if (J_Follow == false)
             return;

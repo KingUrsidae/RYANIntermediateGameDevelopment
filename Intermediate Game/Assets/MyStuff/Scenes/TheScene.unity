@@ -6884,7 +6884,7 @@ MonoBehaviour:
   m_MinValue: 1
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 30
+  m_Value: 20
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -9537,8 +9537,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1830365625}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
-        m_MethodName: set_isOn
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10805,6 +10805,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1002380697}
     m_Modifications:
+    - target: {fileID: 302929182, guid: 21c0415fd53644d4ab0bd30f7c147b98, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 302929186, guid: 21c0415fd53644d4ab0bd30f7c147b98, type: 3}
       propertyPath: gameManager
       value: 
@@ -10855,6 +10859,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1867809317914928885, guid: 21c0415fd53644d4ab0bd30f7c147b98, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5695899561961602191, guid: 21c0415fd53644d4ab0bd30f7c147b98, type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -85,7 +85,7 @@ public class ThirdPersonMove : MonoBehaviour
     }
     void Movement()
     {
-        if (IsFastMoveSpeed == true)
+        if (IsFastMoveSpeed)
         {
             moveSpeed = 20f;
         }
