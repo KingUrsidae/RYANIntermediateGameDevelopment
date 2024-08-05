@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
     private float originalTempreture;
     private float originalExposure;
     private ColorGrading colorGrading;
+    private bool isGodModeOn;
 
     [Header("Other")]
     public float J_gameTime;
@@ -108,6 +109,10 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (isGodModeOn == true)
+        {
+            colorGrading.temperature.value = originalTempreture;
+        }
         SlidersValue();
         if (Input.GetKeyUp(KeyCode.R))
         {
@@ -248,9 +253,14 @@ public class GameManager : MonoBehaviour
     }
     public void RevertLowHealth()
     {
-        if (colorGrading != null)
+        if (colorGrading != null )
         {
             colorGrading.temperature.value = originalTempreture;
         }
+        
+    }
+    public void changeToGodMode()
+    {
+        isGodModeOn = true;
     }
 }

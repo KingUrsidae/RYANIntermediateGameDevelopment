@@ -30,11 +30,13 @@ public class EnemeyMovement : MonoBehaviour
     {
         J_Rigidbody.isKinematic = true;
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
+            J_NavAgent.SetDestination(J_Player.transform.position);
             J_Follow = true;
+            J_NavAgent.isStopped = false;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -42,24 +44,26 @@ public class EnemeyMovement : MonoBehaviour
         if (other.tag == "Player")
         {
             J_Follow = false;
+            J_NavAgent.isStopped = true;
         }
     }
     private void Update()
     {
         J_EAnimator.SetFloat("Horizontal", J_Rigidbody.velocity.normalized.x);
         J_EAnimator.SetFloat("Vertical", J_Rigidbody.velocity.normalized.z);
-        
+
         if (J_Follow == false)
             return;
         float distance = (J_Player.transform.position - transform.position).magnitude;
         if (distance > m_CloseDistance)
         {
-            J_NavAgent.SetDestination(J_Player.transform.position);
             J_NavAgent.isStopped = false;
+            J_Follow = true;
         }
         else
         {
             J_NavAgent.isStopped = true;
+            J_Follow = false;
         }
     }
 }

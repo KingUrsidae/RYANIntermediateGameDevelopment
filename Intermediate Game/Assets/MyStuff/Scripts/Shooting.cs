@@ -18,6 +18,7 @@ public class Shooting : MonoBehaviour
     public Rigidbody J_Bullet; public Rigidbody J_Bullet2;
     public TextMeshProUGUI J_AmmoCounterText;
     public bool InfiniteAmmo = false;
+    public GameObject J_FireBall;
     //cheats
     private bool NoFireRate = false;
     private void Update()
@@ -29,8 +30,13 @@ public class Shooting : MonoBehaviour
     {
         if (timeToFire > 0f)
         {
-            timeToFire -= Time.deltaTime;
+            timeToFire -= Time.deltaTime;   
         }
+        if(timeToFire > 0.2f)
+        {
+            J_FireBall.SetActive(false);
+        }
+        J_FireBall.SetActive(false);
         if (Input.GetMouseButton(0) && timeToFire <= 0)
         {
             Fire();
@@ -58,11 +64,13 @@ public class Shooting : MonoBehaviour
     }
     private void Fire()
     {
+        J_FireBall.SetActive(true);
         Rigidbody shellInstance = Instantiate(J_Bullet, m_FireTransform.position, m_FireTransform.rotation);
         shellInstance.velocity = J_BasicLaunchForce * m_FireTransform.forward;
     }
        private void Fire2()
     {
+        J_FireBall.SetActive(true);
         Rigidbody shellInstance = Instantiate(J_Bullet2, m_FireTransform.position, m_FireTransform.rotation);
         shellInstance.velocity = J_BasicLaunchForce * m_FireTransform.forward;
         J_Ammo = J_Ammo - 1;
