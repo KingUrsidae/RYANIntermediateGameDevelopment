@@ -143,7 +143,4 @@ public class ThirdPersonMove : MonoBehaviour
     {
         IsFastMoveSpeed = true;
     }
-    /*Reffrences
-    
-    */
 }

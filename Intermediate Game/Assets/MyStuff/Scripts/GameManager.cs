@@ -264,3 +264,4 @@ public class GameManager : MonoBehaviour
         isGodModeOn = true;
     }
 }
+// Reffrences to AIE basic game develpment, Tank game.

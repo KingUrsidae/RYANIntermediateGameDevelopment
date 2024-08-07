@@ -32,7 +32,7 @@ public class Shooting : MonoBehaviour
         {
             timeToFire -= Time.deltaTime;   
         }
-        if(timeToFire > 0.2f)
+        if(timeToFire > 0.1f)
         {
             J_FireBall.SetActive(false);
         }
