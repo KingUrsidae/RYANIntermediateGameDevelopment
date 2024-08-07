@@ -7,8 +7,8 @@ public class BulletScript : MonoBehaviour
     [Header("Bullet Numbers")]
     public float J_Damage = 1f;
     private float J_MaxLifeTime = 5f;
-    private float J_ExplosionRadius = 15;
-    private float J_ExplosionForce = 60f;
+    private float J_ExplosionRadius = 2;
+    private float J_ExplosionForce = 20f;
 
     public ParticleSystem J_ExplosionParticles;
     private void Update()
