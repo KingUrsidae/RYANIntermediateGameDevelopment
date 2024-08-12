@@ -17,7 +17,6 @@ public class TimeController : MonoBehaviour
     private ChromaticAberration chromaticAberration;
     private Vignette vignette;
     private float originalVignetteIntensity = 0f;
-    private float originalChromeaticAberratonIntensity = 0f;
     public float J_timeScale;
     
        
@@ -33,27 +32,35 @@ public class TimeController : MonoBehaviour
         Time.fixedDeltaTime = Time.timeScale * .1f;
         ApplyCinematicEffects();
     }
+    /// <summary>
+    /// Bullet time code in update
+    /// </summary>
     void Update()
     {
-        // Bullet time code
         Time.timeScale += (1f / slowDownLength) * Time.unscaledDeltaTime;
         Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
-        // Cidimatic effects
+    }
+    /// <summary>
+    /// Cidimatic effects in fixed update
+    /// </summary>
+    private void FixedUpdate()
+    {
         if (Time.timeScale <= 1f)
         {
-            J_timeScale -= 0.0001f;
+            J_timeScale -= 0.001f;
         }
-        if (Time.timeScale >= 1f)
+        if (Time.timeScale <= 0f)
         {
+            J_timeScale = 0f;
             RevertCinematicEffects();
-        }
-        if (vignette != null)
-        {
-            vignette.intensity.value = J_timeScale;
         }
         if (chromaticAberration != null)
         {
             chromaticAberration.intensity.value = J_timeScale;
+        }
+        if (vignette != null)
+        {
+            vignette.intensity.value = J_timeScale;
         }
     }
     private void Start()
@@ -62,15 +69,12 @@ public class TimeController : MonoBehaviour
         {
             originalVignetteIntensity = vignette.intensity.value;
         }
-        if (postProcessVolume.profile.TryGetSettings(out chromaticAberration))
-        {
-            originalChromeaticAberratonIntensity = chromaticAberration.intensity.value;
-        }
+        postProcessVolume.profile.TryGetSettings(out chromaticAberration);
         J_timeScale = 0f;
     }
     private void ApplyCinematicEffects()
     {
-        J_timeScale = 0.65f;
+        J_timeScale = 0.6f;
     }
     private void RevertCinematicEffects()
     {
@@ -80,7 +84,7 @@ public class TimeController : MonoBehaviour
         }
         if (chromaticAberration != null)
         {
-            chromaticAberration.intensity.value = originalChromeaticAberratonIntensity;
+            chromaticAberration.intensity.value = 0.01f;
         }
     }
 

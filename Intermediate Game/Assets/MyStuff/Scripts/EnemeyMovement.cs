@@ -24,11 +24,11 @@ public class EnemeyMovement : MonoBehaviour
     private void OnEnable()
     {
         J_EAnimator = gameObject.GetComponent<Animator>();
-        J_Rigidbody.isKinematic = false;
+        J_Rigidbody.isKinematic = true;
     }
     private void OnDisable()
     {
-        J_Rigidbody.isKinematic = true;
+        J_Rigidbody.isKinematic = false;
     }
     private void OnTriggerStay(Collider other)
     {

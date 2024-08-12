@@ -65,7 +65,6 @@ public class ThirdPersonMove : MonoBehaviour
         Movement();
         AnimationStuff();
         CheckDash();
-        
     }
     void Inputs()
     {
@@ -87,11 +86,11 @@ public class ThirdPersonMove : MonoBehaviour
     {
         if (IsFastMoveSpeed)
         {
-            moveSpeed = 20f;
+            moveSpeed = 15f;
         }
         else
         {
-            moveSpeed = 5f;
+            moveSpeed = 4f;
         }
         Vector3 direction = transform.forward * move.z * moveSpeed;
         if (cc.isGrounded)
@@ -123,7 +122,7 @@ public class ThirdPersonMove : MonoBehaviour
         }
         if (dashCdTimer >= 0)
         {
-            dashCdTimer -= Time.deltaTime;
+            dashCdTimer -= Time.unscaledDeltaTime;
             canDash = false;
         }
         if (dashCdTimer <= 0)

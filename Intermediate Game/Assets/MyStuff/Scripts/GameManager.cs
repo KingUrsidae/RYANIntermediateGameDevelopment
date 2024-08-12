@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.PostProcessing;
+using JetBrains.Annotations;
 /// <summary>
 /// This is the game manager, it manages everything form ui to game states.
 /// </summary>
@@ -114,10 +115,6 @@ public class GameManager : MonoBehaviour
             colorGrading.temperature.value = originalTempreture;
         }
         SlidersValue();
-        if (Input.GetKeyUp(KeyCode.R))
-        {
-            ReloadScene();
-        }
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             OnQuit();
@@ -221,10 +218,6 @@ public class GameManager : MonoBehaviour
             J_Enemies[i].SetActive(true);
         }
     }
-    public void ReloadScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
     public void startGame()
     {
         J_GameState = GameState.Playing;
@@ -239,8 +232,20 @@ public class GameManager : MonoBehaviour
     public void SlidersValue()
     {
         float J_FOVNum = FOVSlider.value; J_FOVSliderText.text = string.Format("FOV:{000}", J_FOVNum);
+        if (J_FOVNum == 120f)
+        {
+            J_FOVSliderText.text = string.Format("FOV:{000}", "Quake Pro");
+        }
         float J_VolumeNum = VolumeSlider.value; J_VolumeSliderText.text = string.Format("Volume: {000}%", J_VolumeNum);
         float J_SensNum = SensSlider.value; J_SensSliderText.text = string.Format("Mouse Sensitivity: {000}%", J_SensNum);
+        if (J_SensNum == 100f)
+        {
+            J_SensSliderText.text = string.Format("Mouse Sensitivity:{000}", "Shaiiko");
+        }
+        if (J_SensNum == 5f)
+        {
+            J_SensSliderText.text = string.Format("Mouse Sensitivity:{000}", "Beaulo");
+        }
         J_SensValue = J_SensNum/3f;
     }
 
