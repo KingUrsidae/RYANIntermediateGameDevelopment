@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.PostProcessing;
-using JetBrains.Annotations;
 /// <summary>
 /// This is the game manager, it manages everything form ui to game states.
 /// </summary>
@@ -14,7 +13,7 @@ public class GameManager : MonoBehaviour
     [Header("Texts")]
     public TextMeshProUGUI J_AmmoCounterText;
     public TextMeshProUGUI J_MessageText;
-    
+
     [Header("Panels")]
     public GameObject J_MenuPanel;
     public GameObject J_SettingsPanel;
@@ -48,7 +47,6 @@ public class GameManager : MonoBehaviour
     public PostProcessVolume postProcessVolume;
     public float J_newTempreture;
     private float originalTempreture;
-    private float originalExposure;
     private ColorGrading colorGrading;
     private bool isGodModeOn;
 
@@ -74,7 +72,7 @@ public class GameManager : MonoBehaviour
         }
     }
     private void Start()
-    { 
+    {
         for (int i = 0; i < J_Enemies.Length; i++)
         {
             J_Enemies[i].SetActive(false);
@@ -184,7 +182,7 @@ public class GameManager : MonoBehaviour
             J_GameOverPanel.gameObject.SetActive(true);
             J_RetryButton.gameObject.SetActive(true);
             J_QuitButton2.gameObject.SetActive(true);
-            
+
         }
         else if (isGameOverWin == true)
         {
@@ -192,7 +190,6 @@ public class GameManager : MonoBehaviour
             J_AgainButton.gameObject.SetActive(true);
             J_QuitButton3.gameObject.SetActive(true);
         }
-        
     }
     public void OnNewGame()
     {
@@ -246,7 +243,7 @@ public class GameManager : MonoBehaviour
         {
             J_SensSliderText.text = string.Format("Mouse Sensitivity:{000}", "Beaulo");
         }
-        J_SensValue = J_SensNum/3f;
+        J_SensValue = J_SensNum / 3f;
     }
 
     public void ApplyLowHealth()
@@ -258,15 +255,19 @@ public class GameManager : MonoBehaviour
     }
     public void RevertLowHealth()
     {
-        if (colorGrading != null )
+        if (colorGrading != null)
         {
             colorGrading.temperature.value = originalTempreture;
         }
-        
+
     }
     public void changeToGodMode()
     {
         isGodModeOn = true;
+    }
+    public void ReloadSence()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
 // Reffrences to AIE basic game develpment, Tank game.

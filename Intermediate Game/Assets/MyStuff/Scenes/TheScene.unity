@@ -6355,7 +6355,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1952910172}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ReloadScene
+        m_MethodName: ReloadSence
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6712,7 +6712,7 @@ MonoBehaviour:
   m_MinValue: 10
   m_MaxValue: 120
   m_WholeNumbers: 1
-  m_Value: 60
+  m_Value: 90
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -9105,7 +9105,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Version 1.12
+  m_text: Version 1.13
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
