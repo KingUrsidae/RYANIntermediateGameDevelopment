@@ -79,8 +79,8 @@ public class Shooting : MonoBehaviour
     {
         J_Ammo += newAmmo;
     }
-    public void ChangeFireRate()
+    public void ChangeFireRate(bool newBool)
     {
-        NoFireRate = true;
+        NoFireRate = newBool;
     }
 }

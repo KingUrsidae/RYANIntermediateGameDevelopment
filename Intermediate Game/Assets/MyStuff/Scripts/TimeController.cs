@@ -18,7 +18,6 @@ public class TimeController : MonoBehaviour
     private Vignette vignette;
     private float originalVignetteIntensity = 0f;
     public float J_timeScale;
-    
        
     /// <summary>
     /// timeScale

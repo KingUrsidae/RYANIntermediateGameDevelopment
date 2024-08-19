@@ -40,9 +40,4 @@ public class Health : MonoBehaviour
             J_CurrentHealth = J_StartingHealth;
         }
     }
-    public void GlassModeOn()
-    {
-        J_CurrentHealth = 1f;
-        J_StartingHealth = 1f;
-    }
 }

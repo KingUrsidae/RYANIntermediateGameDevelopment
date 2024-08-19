@@ -35,6 +35,9 @@ public class ExplosiveBarrel : MonoBehaviour
             }
         }         
     }
+    /// <summary>
+    /// Draws Explosive and damage range
+    /// </summary>
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, J_ExplosionRadius);

@@ -237,13 +237,9 @@ public class GameManager : MonoBehaviour
         float J_SensNum = SensSlider.value; J_SensSliderText.text = string.Format("Mouse Sensitivity: {000}%", J_SensNum);
         if (J_SensNum == 100f)
         {
-            J_SensSliderText.text = string.Format("Mouse Sensitivity:{000}", "Shaiiko");
-        }
-        if (J_SensNum == 5f)
-        {
             J_SensSliderText.text = string.Format("Mouse Sensitivity:{000}", "Beaulo");
         }
-        J_SensValue = J_SensNum / 3f;
+        J_SensValue = J_SensNum / 5f;
     }
 
     public void ApplyLowHealth()
