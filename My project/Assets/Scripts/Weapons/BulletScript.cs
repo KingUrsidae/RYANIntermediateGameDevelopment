@@ -5,11 +5,11 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     [Header("Bullet Numbers")]
-    public float J_Damage = 1f;
-    public float J_MaxLifeTime = 5f;
-    public float J_ExplosionRadius = 0.5f;
-    public float J_ExplosionForce = 1f;
-    //public ParticleSystem J_ExplosionParticles;
+    public float J_Damage = 1f; 
+    public float J_MaxLifeTime = 5f; // time bullet exists for
+    public float J_ExplosionRadius = 0.5f; // area of effect (AOE)
+    public float J_ExplosionForce = 1f; 
+    //public ParticleSystem J_ExplosionParticles; // efects 
     private void FixedUpdate()
     {
         Destroy(gameObject, J_MaxLifeTime);
@@ -31,12 +31,11 @@ public class BulletScript : MonoBehaviour
                 }
             }
         }
-        /*
-        J_ExplosionParticles.transform.parent = null;
-        J_ExplosionParticles.Play();
-        Destroy(J_ExplosionParticles.gameObject, J_ExplosionParticles.main.duration);
-        */
-        //Destroy(gameObject);
+        
+        //J_ExplosionParticles.transform.parent = null;
+        //J_ExplosionParticles.Play();
+        //Destroy(J_ExplosionParticles.gameObject, J_ExplosionParticles.main.duration);
+        Destroy(gameObject);
     }
     private float CalculateDamage()
     {
